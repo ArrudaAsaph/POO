@@ -9,17 +9,20 @@ class Viagem:
         self.distancia = 0
         self.horas = 0
         self.minutos = 0
-        self.tempo = (self.minutos / 60) + self.horas
+        
 
     def velocidadeMedia(self):
-        veloMedia = self.distancia / self.tempo
+        if self.minutos != 0:
+            self.horas += self.minutos / 60
+        veloMedia = self.distancia / self.horas
+
         return veloMedia
 
-circulo = Viagem()
-circulo.distancia = float(input("Digite a distancia da sua Viagem: "))
-circulo.horas = float(input("Digite a quantidade de horas da sua Viagem: "))
-circulo.minutos = float(input("Digite a quantidade de minutos da sua Viagem: "))
+viagem = Viagem()
+viagem.distancia = float(input("Digite a distancia da sua Viagem: "))
+viagem.horas = int(input("Digite a quantidade de horas da sua Viagem: "))
+viagem.minutos = int(input("Digite a quantidade de minutos da sua Viagem: "))
 
 
-print(f"A area do seu círculo é: {area}")
-print(f"A circuferencia do seu círculo é: {circuferencia:.2f}")
+print(f"Você fez {viagem.distancia} km em {viagem.horas} horas e {viagem.minutos} lgo sua velocidade média é {viagem.velocidadeMedia():.2f} Km/h.")
+# print(f"A circuferencia do seu círculo é: {circuferencia:.2f}")
