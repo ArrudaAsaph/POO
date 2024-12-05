@@ -34,11 +34,10 @@ class EquacaoII:
     
     def calc_Baskara(self):
         if self.calc_Delta() >= 0: 
-            x1 = ((self.__b * -1) + math.sqrt(self.calc_Delta())) / 2 * self.__a
-            x2 = ((self.__b * -1) - math.sqrt(self.calc_Delta())) / 2 * self.__a
+            x1 = ((self.__b * -1) - math.sqrt(self.calc_Delta())) / 2 * self.__a
+            x2 = ((self.__b * -1) + math.sqrt(self.calc_Delta())) / 2 * self.__a
             return x1, x2
-        else:
-            return None
+        return None, None
     
 # a = int(input())
 # b = int(input())

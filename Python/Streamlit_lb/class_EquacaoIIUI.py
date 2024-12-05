@@ -13,3 +13,6 @@ class EquacaoIIUI:
             x1, x2 = e.calc_Baskara()
             st.write(f"x1 = {x1:.2f}")
             st.write(f"x2 = {x2:.2f}")
+        
+        if e.calc_Delta() > 0:
+            d = x2 - x1
