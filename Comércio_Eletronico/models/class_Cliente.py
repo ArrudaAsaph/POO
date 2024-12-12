@@ -82,7 +82,8 @@ class Clientes:
             cls.lista_Clientes.append(obj)
             cls.salvar_Cliente()
 
-    def remover_Cliente(cls,obj):
+    @classmethod
+    def excluir_Cliente(cls,obj):
         x = cls.listar_Id(obj.id)
         if (x != None):
             cls.lista_Clientes.remove(x)
