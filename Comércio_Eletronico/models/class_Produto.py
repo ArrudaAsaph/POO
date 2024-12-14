@@ -15,8 +15,8 @@ class Produtos:
     lista_Produtos = []
 
     @classmethod
-    def inserir_Produtos(cls,obj):
-        cls.abrir_Produtos()
+    def inserir_Prod(cls,obj):
+        cls.abrir_Prod()
 
         id = 0
         for x in cls.lista_Produtos:
@@ -24,43 +24,43 @@ class Produtos:
 
         obj.id = id + 1
         cls.lista_Produtos.append(obj)
-        cls.salvar_Produtos()
+        cls.salvar_Prod()
     
     @classmethod
-    def listar_Produtos(cls):
-        cls.abrir_Produtos()
+    def listar_Prod(cls):
+        cls.abrir_Prod()
         return cls.lista_Produtos
     
     @classmethod
     def listar_Id(cls,id):
-        cls.abrir_Produtos()
+        cls.abrir_Prod()
         for x in cls.lista_Produtos:
             if x.id == id: return x
         return None
     
     @classmethod
-    def atualizar_Produtos(cls,obj):
+    def atualizar_Prod(cls,obj):
         x = cls.listar_Id(obj.id)   
         if (x != None):
             cls.lista_Produtos.remove(x)
             cls.lista_Produtos.append(obj)
-            cls.salvar_Produtos()
+            cls.salvar_Prod()
 
     @classmethod
-    def excluir_Produtos(cls,obj):
+    def excluir_Prod(cls,obj):
         x = cls.listar_Id(obj.id)
         if (x != None):
             cls.lista_Produtos.remove(x)
-            cls.salvar_Produtos()
+            cls.salvar_Prod()
         
     
     @classmethod
-    def salvar_Produtos(cls):
+    def salvar_Prod(cls):
         with open("produtos.json", mode="w") as arquivo:
             json.dump(cls.lista_Produtos,arquivo, default=vars)
 
     @classmethod
-    def abrir_Produtos(cls):
+    def abrir_Prod(cls):
         cls.lista_Produtos = []
 
         try:

@@ -12,51 +12,51 @@ class Categorias:
     lista_Categorias = []
 
     @classmethod
-    def inserir_Categoria(cls,obj):
-        cls.abrir_Categoria()
+    def inserir_Categ(cls,obj):
+        cls.abrir_Categ()
 
         id = 0
         for x in cls.lista_Categorias:
             if x.id > id: id = x.id
         obj.id = id + 1
         cls.lista_Categorias.append(obj)
-        cls.salvar_Categoria()
+        cls.salvar_Categ()
     
     @classmethod
-    def listar_Categoria(cls):
-        cls.abrir_Categoria()
+    def listar_Categ(cls):
+        cls.abrir_Categ()
         return cls.lista_Categorias
     
     @classmethod
     def listar_Id(cls,id):
-        cls.abrir_Categoria()
+        cls.abrir_Categ()
         for x in cls.lista_Categorias:
             if x.id == id: return x
         return None
     
     @classmethod
-    def atualizar_Categoria(cls,obj):
+    def atualizar_Categ(cls,obj):
         x = cls.listar_Id(obj.id)   
         if (x != None):
             cls.lista_Categorias.remove(x)
             cls.lista_Categorias.append(obj)
-            cls.salvar_Categoria()
+            cls.salvar_Categ()
 
     @classmethod
-    def excluir_Categoria(cls,obj):
+    def excluir_Categ(cls,obj):
         x = cls.listar_Id(obj.id)
         if (x != None):
             cls.lista_Categorias.remove(x)
-            cls.salvar_Categoria()
+            cls.salvar_Categ()
         
     
     @classmethod
-    def salvar_Categoria(cls):
+    def salvar_Categ(cls):
         with open("categorias.json", mode="w") as arquivo:
             json.dump(cls.lista_Categorias,arquivo, default=vars)
 
     @classmethod
-    def abrir_Categoria(cls):
+    def abrir_Categ(cls):
         cls.lista_Categorias = []
 
         try:

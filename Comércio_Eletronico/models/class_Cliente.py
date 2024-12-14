@@ -52,51 +52,51 @@ class Clientes:
     lista_Clientes = []
 
     @classmethod
-    def inserir_Cliente(cls,obj):
-        cls.abrir_Cliente()
+    def inserir_Clien(cls,obj):
+        cls.abrir_Clien()
 
         id = 0
         for x in cls.lista_Clientes:
             if x.id > id: id = x.id
         obj.id = id + 1
         cls.lista_Clientes.append(obj)
-        cls.salvar_Cliente()
+        cls.salvar_Clien()
     
     @classmethod
-    def listar_Clientes(cls):
-        cls.abrir_Cliente()
+    def listar_Clien(cls):
+        cls.abrir_Clien()
         return cls.lista_Clientes
     
     @classmethod
     def listar_Id(cls,id):
-        cls.abrir_Cliente()
+        cls.abrir_Clien()
         for x in cls.lista_Clientes:
             if x.id == id: return x
         return None
     
     @classmethod
-    def atualizar_Cliente(cls,obj):
+    def atualizar_Clien(cls,obj):
         x = cls.listar_Id(obj.id)   
         if (x != None):
             cls.lista_Clientes.remove(x)
             cls.lista_Clientes.append(obj)
-            cls.salvar_Cliente()
+            cls.salvar_Clien()
 
     @classmethod
-    def excluir_Cliente(cls,obj):
+    def excluir_Clien(cls,obj):
         x = cls.listar_Id(obj.id)
         if (x != None):
             cls.lista_Clientes.remove(x)
-            cls.salvar_Cliente()
+            cls.salvar_Clien()
         
     
     @classmethod
-    def salvar_Cliente(cls):
+    def salvar_Clien(cls):
         with open("clientes.json", mode="w") as arquivo:
             json.dump(cls.lista_Clientes,arquivo, default=vars)
 
     @classmethod
-    def abrir_Cliente(cls):
+    def abrir_Clien(cls):
         cls.lista_Clientes = []
 
         try:
