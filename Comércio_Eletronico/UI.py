@@ -14,34 +14,39 @@ class UI:
                     UI.listar_Clientes()
                 case 3:
                     UI.atualizar_Cliente()
-                # case 4:
-                #     UI.remover_Cliente()
-                # case 5:
-                #     UI.cadastrar_Categoria()
-                # case 6:
-                #     UI.listar_Categoria()
-                # case 7:
-                #     UI.atualizar_Categorias()
-                # case 8:
-                #     UI.remover_Categoria()
-                # case 9:
-                #     UI.cadastrar_Produto()
-                # case 10:
-                #     UI.listar_Produto()
-                # case 11:
-                #     UI.atualizar_Produtos()
-                # case 12:
-                #     UI.remover_Produto()
+                case 4:
+                    UI.remover_Cliente()
+                case 5:
+                    UI.cadastrar_Categoria()
+                case 6:
+                    UI.listar_Categorias()
+                case 7:
+                    UI.atualizar_Categorias()
+                case 8:
+                    UI.remover_Categoria()
+                case 9:
+                    UI.cadastrar_Produto()
+                case 10:
+                    UI.listar_Produto()
+                case 11:
+                    UI.atualizar_Produtos()
+                case 12:
+                    UI.remover_Produto()
 
     @staticmethod
-
+# =================================================================================================================================
+# MENU 
+    
+    
     def menu():
         print("Escolha uma opção abaixo!")
         print("1 - Cadastrar Cliente, 2 - Listar Cliente, 3 - Atualizar, 4 - Excluir")
         print("5 - Cadastrar Categoria, 6 - Listar Categoria, 7 - Atualizar, 8 - Excluir")
         print("9 - Cadastrar Produto, 10 - Listar Produto, 11 - Atualizar, 12 - Excluir")
         return int(input("Digite a opção desejada: "))
-    
+
+# ================================== CLIENTES ==============================================================================================
+# CADASTRAR
     @classmethod
     def cadastrar_Cliente(cls):
         nome = input("Informe o nome: ")
@@ -74,7 +79,7 @@ class UI:
         senha = input("Informe o senha: ")
         Controle.Cliente_Validation(nome,telefone,email,senha)
 
-
+# LISTAR
     @classmethod
     def listar_Clientes(cls):
         clientes = Controle.Cliente_Listar()
@@ -86,6 +91,7 @@ class UI:
                 print(x)
             print("------------" * 10)
 
+# ATUALIZAR
     @classmethod
     def atualizar_Cliente(cls):
         cls.listar_Clientes()
@@ -115,62 +121,85 @@ class UI:
                 print("----------------------------")
             else:
                 break
-
         senha = input("Informe a senha: ")
-
         Controle.Cliente_Atualizar(id,nome,telefone,email,senha)
 
 
+# REMOVER
     @classmethod
     def remover_Cliente(cls):
         cls.listar_Clientes()
 
         id = int(input("Informe o id do cliente a ser removido: "))
         # cliente_excluido = Cliente(id,"","","","")
-        id
-        Clientes.excluir_Cliente(cliente_excluido)
+        Controle.Cliente_Excluir(id)
+# ================================== CATEGORIAS ==============================================================================================
+# CADASTRAR
+    @classmethod
+    def cadastrar_Categoria(cls):
+        descricao = input("Insira a descrição: ")
+        # nova_Categoria = Categoria(0,descricao)
+        # Categorias.inserir_Categoria(nova_Categoria)
+        Controle.Categoria_Validation_Description(descricao)
 
-    # @classmethod
-    # def cadastrar_Categoria(cls):
-    #     descricao = input("Insira a descrição: ")
-    #     nova_Categoria = Categoria(0,descricao)
-    #     Categorias.inserir_Categoria(nova_Categoria)
+# LISTAR
+    @classmethod
+    def listar_Categorias(cls):
+        categorias = Controle.Categoria_Listar()
+        if (len(categorias) == 0):
+            print("Não há nenhum cliente cadastrado!")
+        else:
+            print("------------" * 10)
+            for x in categorias:
+                print(x)
+            print("------------" * 10)
 
-    # @classmethod
-    # def listar_Categoria(cls):
-    #     categoria = Categorias.listar_Categoria()
+# ATUALIZAR
+    @classmethod
+    def atualizar_Categorias(cls):
+        cls.listar_Categorias()
 
-    #     for x in categoria:
-    #         print(x)
+        id = int(input("Informe o id da categoria a ser alterado: "))
+        descricao = input("Informe a nova descrição: ")
+        Controle.Categoria_Atualizar(id,descricao)
 
-    # @classmethod
-    # def atualizar_Categorias(cls):
-    #     cls.listar_Categoria()
+# REMOVER    
+    @classmethod
+    def remover_Categoria(cls):
+        cls.listar_Categorias()
 
-    #     id = int(input("Informe o id da categoria a ser alterado: "))
-    #     descricao = input("Informe a nova descrição: ")
-    #     categoria_atualizada = Categoria(id,descricao)
-    #     Categorias.atualizar_Categoria(categoria_atualizada)
+        id = int(input("Informe o id do cliente a ser removido: "))
+        # categoria_excluido = Categoria(id,"")
+        # Categorias.excluir_Categoria(categoria_excluido)
+        Controle.Categoria_Excluir(id)
     
-    # @classmethod
-    # def remover_Categoria(cls):
-    #     cls.listar_Categoria()
+# ================================== PRODUTOS ==============================================================================================
+# CADASTRAR
 
-    #     id = int(input("Informe o id do cliente a ser removido: "))
-    #     categoria_excluido = Categoria(id,"")
-    #     Categorias.excluir_Categoria(categoria_excluido)
-
-    # @classmethod
-    # def cadastrar_Produto(cls):
-    #     descricao = input("Informe a descrição do Produto: ")
-    #     preco = input("Informe a preco do Produto: R$")
-    #     quantidade = input("Informe a quantidade do Produto: ")
+    @classmethod
+    def cadastrar_Produto(cls):
+        descricao = input("Informe a descrição do Produto: ")
+        preco = input("Informe a preco do Produto: R$")
+        quantidade = input("Informe a quantidade do Produto: ")
         
-    #     cls.listar_Categoria()
-    #     id_Categoria = input("Informe o id da Categoria: ")
+        cls.listar_Categorias()
+        id_Categoria = input("Informe o id da Categoria: ")
+        while True:
+            print(f"Id cat antes{id_Categoria}")
+            id_Categoria = Controle.Produto_Validation_IdCatogoria(id_Categoria)
+            print(f"Id cat dps{id_Categoria}")
 
-    #     novo_Produto = Produto(0,descricao,preco,quantidade,id_Categoria)
-    #     Produtos.inserir_Produtos(novo_Produto)
+            if id_Categoria == None:
+                print("Categoria invalida")
+                id_Categoria = int(input("Informe uma categoria válida: "))
+            else:
+                break
+        
+        Controle.Produto_Validation(descricao,preco,quantidade,id_Categoria)
+
+
+        # novo_Produto = Produto(0,descricao,preco,quantidade,id_Categoria)
+        # Produtos.inserir_Produtos(novo_Produto)
     
     # @classmethod
     # def listar_Produto(cls):

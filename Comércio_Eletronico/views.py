@@ -16,3 +16,35 @@ class Views:
     def atualizar_Cliente(id,nome,telefone,email,senha):
         cliente_atualizado = Cliente(id,nome,telefone,email,senha)
         return Clientes.atualizar_Clien(cliente_atualizado)
+
+    @staticmethod
+    def remover_Cliente(id):
+        cliente_removido = Cliente(id,"","","","")
+        Clientes.excluir_Clien(cliente_removido)
+    
+
+    @staticmethod
+    def adicionar_Categoria(descricao):
+        nova_Categoria = Categoria(0,descricao)
+        Categorias.inserir_Categ(nova_Categoria)
+
+    @staticmethod
+    def listar_Categoria():
+        return Categorias.listar_Categ()
+    
+    
+    @staticmethod
+    def atualizar_Categoria(id,descricao):
+        categoria_atualizado = Categoria(id,descricao)
+        return Categorias.atualizar_Categ(categoria_atualizado)
+
+    @staticmethod
+    def remover_Categoria(id):
+        categoria_removido = Categoria(id,"")
+        Categorias.excluir_Categ(categoria_removido)
+    
+    @staticmethod
+    def adicionar_Produto(descricao,preco,quantidade,id_Categoria):
+        novo_Produto = Produto(0,descricao,preco,quantidade,id_Categoria)
+        Produtos.inserir_Prod(novo_Produto)
+

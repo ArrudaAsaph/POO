@@ -60,4 +60,42 @@ class Controle:
     
     @staticmethod
     def Cliente_Excluir(id):
-        return Views.
+        return Views.remover_Cliente(id)
+    
+    @staticmethod
+    def Categoria_Validation_Description(description):
+        description = description.capitalize()
+        return Views.adicionar_Categoria(description)
+
+    @staticmethod
+    def Categoria_Listar():
+        return Views.listar_Categoria()
+    
+    @staticmethod
+    def Categoria_Atualizar(id,descricao):
+        return Views.atualizar_Categoria(id,descricao)
+
+    @staticmethod
+    def Categoria_Excluir(id):
+        return Views.remover_Categoria(id)
+    
+
+    @staticmethod
+    def Produto_Validation(descricao,preco,quantidade,idCategoria):
+        Views.adicionar_Produto(descricao,preco,quantidade,idCategoria)
+
+    @staticmethod 
+    def Produto_Validation_IdCatogoria(idCategoria):
+        lista_Categorias = Views.listar_Categoria()
+
+        for categorias in lista_Categorias:
+            print(f"categorias{categorias}")
+            print(f"categorias ID{categorias.id}")
+
+            print(f"Lista categorias{lista_Categorias}")
+
+            if idCategoria == categorias.id: 
+                return idCategoria
+        ValueError("Categoria inválida!")
+        return None
+
