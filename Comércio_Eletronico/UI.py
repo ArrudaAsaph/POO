@@ -1,4 +1,4 @@
-from validation import Validation
+from controle import Controle
 
 class UI:
     @staticmethod
@@ -10,10 +10,10 @@ class UI:
             match (op):
                 case 1:
                     UI.cadastrar_Cliente()
-                # case 2:
-                #     UI.listar_Clientes()
-                # case 3:
-                #     UI.atualizar_Cliente()
+                case 2:
+                    UI.listar_Clientes()
+                case 3:
+                    UI.atualizar_Cliente()
                 # case 4:
                 #     UI.remover_Cliente()
                 # case 5:
@@ -45,39 +45,90 @@ class UI:
     @classmethod
     def cadastrar_Cliente(cls):
         nome = input("Informe o nome: ")
+        nome = Controle.Cliente_Validation_Name(nome)
+    
         telefone = input("Informe o telefone: ")
+        while True:
+            telefone = Controle.Cliente_Validation_Phone(telefone)
+            if (telefone == None):
+                print("----------------------------")
+                print("Número de telefone inválido!")
+                print("Ex: DDD + XXXXXXXXX (84981311523)")
+                telefone = input("Informe o um número de telefone válido: ")
+                print("----------------------------")
+            else:
+                break
+
         email = input("Informe o email: ")
+        while True:
+            email = Controle.Cliente_Validation_Email(email)
+            if (email == None):
+                print("----------------------------")
+                print("Número de email inválido!")
+                print("Ex: xxxxx@xxxx.com (azulvermelho@gmail.com))")
+                email = input("Informe o um número de email válido: ")
+                print("----------------------------")
+            else:
+                break
+
         senha = input("Informe o senha: ")
-        Validation.Cliente_Validation(nome,telefone,email,senha)
+        Controle.Cliente_Validation(nome,telefone,email,senha)
 
 
-    # @classmethod
-    # def listar_Clientes(cls):
-    #     clientes = Clientes.listar_Clientes()
+    @classmethod
+    def listar_Clientes(cls):
+        clientes = Controle.Cliente_Listar()
+        if (len(clientes) == 0):
+            print("Não há nenhum cliente cadastrado!")
+        else:
+            print("------------" * 10)
+            for x in clientes:
+                print(x)
+            print("------------" * 10)
 
-    #     for x in clientes:
-    #         print(x)
+    @classmethod
+    def atualizar_Cliente(cls):
+        cls.listar_Clientes()
+        id = int(input("Informe o id do cliente a ser alterado: "))
+        print(" ")
+        nome = input("Informe o novo nome: ")
+        nome = Controle.Cliente_Validation_Name(nome)
+        telefone = input("Informe o novo fone: ")
+        while True:
+            telefone = Controle.Cliente_Validation_Phone(telefone)
+            if (telefone == None):
+                print("----------------------------")
+                print("Número de telefone inválido!")
+                print("Ex: DDD + XXXXXXXXX (84981311523)")
+                telefone = input("Informe o um número de telefone válido: ")
+                print("----------------------------")
+            else:
+                break
+        email = input("Informe o novo email: ")
+        while True:
+            email = Controle.Cliente_Validation_Email(email)
+            if (email == None):
+                print("----------------------------")
+                print("Número de email inválido!")
+                print("Ex: xxxxx@xxxx.com (azulvermelho@gmail.com))")
+                email = input("Informe o um número de email válido: ")
+                print("----------------------------")
+            else:
+                break
 
-    # @classmethod
-    # def atualizar_Cliente(cls):
-    #     cls.listar_Clientes()
+        senha = input("Informe a senha: ")
 
-    #     id = int(input("Informe o id do cliente a ser alterado: "))
-    #     nome = input("Informe o novo nome: ")
-    #     telefone = input("Informe o novo fone: ")
-    #     email = input("Informe o novo email: ")
-    #     senha = input("Informe a senha: ")
+        Controle.Cliente_Atualizar(id,nome,telefone,email,senha)
 
-    #     cliente_atualizado = Cliente(id,nome,telefone,email,senha)
-    #     Clientes.atualizar_Cliente(cliente_atualizado)
 
-    # @classmethod
-    # def remover_Cliente(cls):
-    #     cls.listar_Clientes()
+    @classmethod
+    def remover_Cliente(cls):
+        cls.listar_Clientes()
 
-    #     id = int(input("Informe o id do cliente a ser removido: "))
-    #     cliente_excluido = Cliente(id,"","","","")
-    #     Clientes.excluir_Cliente(cliente_excluido)
+        id = int(input("Informe o id do cliente a ser removido: "))
+        # cliente_excluido = Cliente(id,"","","","")
+        id
+        Clientes.excluir_Cliente(cliente_excluido)
 
     # @classmethod
     # def cadastrar_Categoria(cls):

@@ -1,11 +1,8 @@
 from views import Views
 
-class Validation:
+class Controle:
     @classmethod
     def Cliente_Validation(cls,nome,telefone,email,senha):
-        nome = cls.Cliente_Validation_Name(nome)
-        email = cls.Cliente_Validation_Email(email)
-        telefone = cls.Cliente_Validation_Phone(telefone)
         Views.adicionar_Cliente(nome,telefone,email,senha)
     #8498143
     @classmethod
@@ -29,15 +26,14 @@ class Validation:
         if ('@' in email): 
             return email
         else:   
-            raise ValueError("Email inválido!")
+            ValueError("Número inválido!")
+            return None
 
     @classmethod
     def Cliente_Validation_Phone(cls,telefone):
         if (len(telefone) > 15 or len(telefone) < 11 ):
-            # raise ValueError("Número inválido!")
-            return cls.Cliente_Validation_Phone(input("Digite um número válido: "))
-           
-
+            ValueError("Número inválido!")
+            return None
         else:
             number = "("
             parenthenses = ")"
@@ -54,4 +50,14 @@ class Validation:
                     number += telefone[i]
             return number
 
-
+    @staticmethod
+    def Cliente_Listar():
+        return Views.listar_Clientes()
+    
+    @staticmethod
+    def Cliente_Atualizar(id,nome,telefone,email,senha):
+        return Views.atualizar_Cliente(id,nome,telefone,email,senha)
+    
+    @staticmethod
+    def Cliente_Excluir(id):
+        return Views.
