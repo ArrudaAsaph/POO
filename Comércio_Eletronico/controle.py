@@ -98,4 +98,19 @@ class Controle:
                 return idCategoria
         ValueError("Categoria inválida!")
         return None
+    
+    @staticmethod
+    def Produto_Listar():
+        return Views.listar_Produto()
+    
+    @staticmethod
+    def Produto_Atualizar(id,descricao,preco,estoque,id_Categoria):
+        return Views.atualizar_Produto(id,descricao,preco,estoque,id_Categoria)
+
+
+    @staticmethod
+    def Produto_Excluir(id):
+        return Views.remover_Produto(id)
+    
+
 

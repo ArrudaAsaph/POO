@@ -67,7 +67,7 @@ class Produtos:
             with open("produtos.json", mode = "r") as arquivo:
                 Produtos_json = json.load(arquivo)
                 for obj in Produtos_json:
-                    c = Produto(obj["id"],obj["descricao"],obj["preco"],obj["estoque"],obj["id_Categoria"])
+                    c = Produto(obj["id"],obj["descricao"],obj["preco"],obj["estoque"],obj["id_categoria"])
                     cls.lista_Produtos.append(c)
                 
         except FileNotFoundError:

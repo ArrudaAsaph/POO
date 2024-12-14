@@ -183,7 +183,7 @@ class UI:
         quantidade = input("Informe a quantidade do Produto: ")
         
         cls.listar_Categorias()
-        id_Categoria = input("Informe o id da Categoria: ")
+        id_Categoria = int(input("Informe o id da Categoria: "))
         while True:
             print(f"Id cat antes{id_Categoria}")
             id_Categoria = Controle.Produto_Validation_IdCatogoria(id_Categoria)
@@ -201,34 +201,44 @@ class UI:
         # novo_Produto = Produto(0,descricao,preco,quantidade,id_Categoria)
         # Produtos.inserir_Produtos(novo_Produto)
     
-    # @classmethod
-    # def listar_Produto(cls):
-    #     lista_produto = Produtos.listar_Produtos()
+    @classmethod
+    def listar_Produto(cls):
+        produtos = Controle.Produto_Listar()
+        if (len(produtos) == 0):
+            print("Não há nenhum cliente cadastrado!")
+        else:
+            print("------------" * 10)
+            for x in produtos:
+                print(x)
+            print("------------" * 10)
+   
+    @classmethod
+    def atualizar_Produtos(cls):
+        cls.listar_Produto()
+        id = int(input("Informe o id dos produtos a ser alterado: "))
+        descricao = input("Informe a nova descrição: ")
+        preco = float(input("Informe o novo valor: "))
+        estoque = int(input("Informe o novo estoque: "))
 
-    #     for x in lista_produto:
-    #         print(x)
-    # # descricao,preco,estoque,id_categoria
-    # @classmethod
-    # def atualizar_Produtos(cls):
-    #     cls.listar_Produto()
-    #     id = int(input("Informe o id dos produtos a ser alterado: "))
-    #     descricao = input("Informe a nova descrição: ")
-    #     preco = float(input("Informe o novo valor: "))
-    #     estoque = int(input("Informe o novo estoque: "))
+        cls.listar_Categorias()
+        id_Categoria = int(input("Informe o id da Categoria: "))
+        while True:
+            id_Categoria = Controle.Produto_Validation_IdCatogoria(id_Categoria)
 
-    #     cls.listar_Categoria()
-    #     id_categoria = int(input("Informe o id da categoria: "))
-    #     produto_atualizada = Produtos(id,descricao,preco,estoque,id_categoria)
-    #     Produtos.atualizar_Produtos(produto_atualizada)
+            if id_Categoria == None:
+                print("Categoria invalida")
+                id_Categoria = int(input("Informe uma categoria válida: "))
+            else:
+                break
+        
+        Controle.Produto_Atualizar(id,descricao,preco,estoque,id_Categoria)
 
-    # @classmethod
-    # def remover_Produto(cls):
-    #     cls.listar_Produto()
+    @classmethod
+    def remover_Produto(cls):
+        cls.listar_Produto()
 
-    #     id = int(input("Informe o id do cliente a ser removido: "))
-    #     produto_excluido = Produto(id,"")
-    #     Produtos.excluir_Produtos(produto_excluido)
-
+        id = int(input("Informe o id do cliente a ser removido: "))
+        Controle.Produto_Excluir(id)
 
         
         

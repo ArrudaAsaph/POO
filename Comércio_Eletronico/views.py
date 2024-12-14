@@ -48,3 +48,16 @@ class Views:
         novo_Produto = Produto(0,descricao,preco,quantidade,id_Categoria)
         Produtos.inserir_Prod(novo_Produto)
 
+    @staticmethod
+    def listar_Produto():
+        return Produtos.listar_Prod()
+    
+    @staticmethod
+    def atualizar_Produto(id,descricao,preco,estoque,id_Categoria):
+        produto_atualizado = Produto(id,descricao,preco,estoque,id_Categoria)
+        Produtos.atualizar_Prod(produto_atualizado)
+    
+    @staticmethod
+    def remover_Produto(id):
+        produto_removido = Produto(id,"","","","")
+        Produtos.excluir_Prod(produto_removido)
