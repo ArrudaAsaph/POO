@@ -3,6 +3,7 @@ from views import Views
 class Controle:
     @classmethod
     def Cliente_Validation(cls,nome,telefone,email,senha):
+        Views.cliente_Admin()
         Views.adicionar_Cliente(nome,telefone,email,senha)
     #8498143
     @classmethod
@@ -113,4 +114,12 @@ class Controle:
         return Views.remover_Produto(id)
     
 
-
+    @staticmethod
+    def Admin():
+        return Views.cliente_Admin()
+    
+    @staticmethod
+    def Autentification(email,senha):
+        return Views.Autentificar_Cliente(email,senha)
+    
+    

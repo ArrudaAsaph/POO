@@ -5,6 +5,8 @@ class UI:
     def main():
         op = 0
 
+        Controle.Admin()
+
         while (op != -1):
             op = int(UI.menu())
             match (op):
@@ -33,11 +35,11 @@ class UI:
                 case 12:
                     UI.remover_Produto()
 
-    @staticmethod
 # =================================================================================================================================
 # MENU 
     
     
+    @staticmethod
     def menu():
         print("Escolha uma opção abaixo!")
         print("1 - Cadastrar Cliente, 2 - Listar Cliente, 3 - Atualizar, 4 - Excluir")
@@ -240,6 +242,6 @@ class UI:
         id = int(input("Informe o id do cliente a ser removido: "))
         Controle.Produto_Excluir(id)
 
-        
+        ''
         
 UI.main()
