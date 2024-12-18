@@ -10,7 +10,6 @@ class UI_Login:
         login, pessoa = Controle.Autentification(email,senha)
         if st.button("Entar"):
             if email and senha:
-                st.write(login)
                 if login is None:
                     st.error("Email ou senha invalidos")
                 else:

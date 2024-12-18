@@ -1,7 +1,8 @@
 import streamlit as st
 from templates.class_Cadastro import UI_Cadastro
 from templates.class_Login import UI_Login
-from templates.class_listaClientes import UI_Clientes
+from templates.class_UIClientes import UI_Clientes
+from templates.class_UICategorias import UI_Categorias
 
 class Index:
     def Main():
@@ -46,6 +47,8 @@ class Index:
         
         elif st.session_state.page == 'admin':
             Index.Admin_Tela()
+            
+
         
        
         elif st.session_state.page == 'usuario':
@@ -53,7 +56,11 @@ class Index:
 
     def Admin_Tela():
         st.write("Seja bem-vindo Admin!")
-        UI_Clientes.main()
+        op = st.sidebar.selectbox("Menu", ["Clientes", "Categorias", "Produtos", "Reajustar Preços", "Visualizar Pedidos"])
+        if op == "Clientes":
+            UI_Clientes.main()
+        elif op == "Categorias":
+            UI_Categorias.main()
         
         
 
@@ -61,5 +68,5 @@ class Index:
         st.write("Seja bem-vindo Usuário!")
         
 
-# Index.Main()
-UI_Clientes.main()
+Index.Main()
+# UI_Clientes.main()

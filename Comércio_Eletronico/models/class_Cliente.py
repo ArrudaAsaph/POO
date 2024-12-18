@@ -55,7 +55,7 @@ class Clientes:
     def inserir_Clien(cls,obj):
         cls.abrir_Clien()
 
-        id = 0
+        id = -1
         for x in cls.lista_Clientes:
             if x.id > id: id = x.id
         obj.id = id + 1
