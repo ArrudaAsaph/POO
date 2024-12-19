@@ -180,5 +180,6 @@ class Views:
     #    id, nome, qtd, preco, id_venda, id_produto
 
         VendaItens.excluir_VendaIt(v)
-    
-
+# adicionar_VendaItem(nome, quantidade, preco, id_venda, id_produto):
+Views.adicionar_VendaItem("asaph",4,60,10,2)
+print("olá")

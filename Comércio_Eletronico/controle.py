@@ -127,7 +127,7 @@ class Controle:
     
     @staticmethod
     def Autentification(email,senha):
-        return Views.Autentificar_Cliente(email,senha)
+        return Views.autentificar_Cliente(email,senha)
     
     @staticmethod
     def Reajustar_Produto_Unico(id,porcentagem):
@@ -166,6 +166,6 @@ class Controle:
         return Views.atualizar_VendaItem(id,nome, quantidade, preco, id_venda, id_produto)
     
     @staticmethod
-    def Excluir(id):
+    def Excluir_VendaItem(id):
         return Views.excluir_VendaItem(id)
 
