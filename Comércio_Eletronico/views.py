@@ -2,7 +2,7 @@ from models.class_Categoria import Categoria, Categorias
 from models.class_Cliente import Cliente, Clientes
 from models.class_Produto import Produto, Produtos
 from models.class_Vendas import Venda, Vendas
-from models.class_VendaItens import VendaItem, VendaItens
+from models.class_VendaItens import VendaItem, VendasItems
 class Views:
     @staticmethod
     def adicionar_Cliente(nome,telefone,email,senha):
@@ -133,7 +133,7 @@ class Views:
                 Vendas.atualizar_Vend(venda_atualizada)
                 break
         
-        for vendaitem in VendaItens.listar_VendaIt():
+        for vendaitem in VendasItems.listar_VendaIt():
             # id, nome, qtd, preco, id_venda, id_produto
             id_produto = 0
             if vendaitem.id_venda == id_venda:
@@ -153,7 +153,7 @@ class Views:
     @staticmethod
     def atualizar_Venda(id, data, carrinho, total, id_cliente):
         venda_atualizada = Venda(id, data, carrinho, total, id_cliente)
-        Vendas.atualiza_Vend(venda_atualizada)
+        Vendas.atualizar_Vend(venda_atualizada)
 
 
 
@@ -162,24 +162,24 @@ class Views:
     @staticmethod
     def adicionar_VendaItem(nome, quantidade, preco, id_venda, id_produto):
         nova_VendaItem = VendaItem(0, nome, quantidade, preco, id_venda, id_produto)
-        VendaItens.inserir_VendaIt(nova_VendaItem)
+        VendasItems.inserir_VendaItem(nova_VendaItem)
 
     @staticmethod
     def listar_VendaItem():
-        return VendaItens.listar_VendaIt() 
+        return VendasItems.listar_VendaItem() 
     
     @staticmethod
     def atualizar_VendaItem(id, nome, quantidade, preco, id_venda, id_produto):
     #    id, nome, qtd, preco, id_venda, id_produto
-        venda_atualizada = VendaItem(id, nome, quantidade, preco, id_venda, id_produto)
-        VendaItens.atualizar_VendaIt(venda_atualizada)
+        venda_atualizada = VendaItem(0, nome, quantidade, preco, id_venda, id_produto)
+        VendasItems.atualizar_VendaItem(venda_atualizada)
 
     @staticmethod
     def excluir_VendaItem(id):
-        v = VendaItem(id, "", 0, 0, None, None)
+        v = VendaItem(id, " ", 0, 0, None, None)
     #    id, nome, qtd, preco, id_venda, id_produto
 
-        VendaItens.excluir_VendaIt(v)
+        VendasItems.excluir_VendaItem(v)
 # adicionar_VendaItem(nome, quantidade, preco, id_venda, id_produto):
 Views.adicionar_VendaItem("asaph",4,60,10,2)
 print("olá")

@@ -1,1 +1,1 @@
-[{"id": 6, "descricao": "Hilux S10 - 2024", "preco": 1408000.0, "estoque": 1, "id_categoria": 1}, {"id": 5, "descricao": "Galaxy Samsung S24", "preco": 158400.0, "estoque": 20, "id_categoria": 4}, {"id": 2, "descricao": "Roucautan", "preco": 1055.472, "estoque": 100, "id_categoria": 2}]
+[{"id": 6, "descricao": "Hilux S10 - 2024", "preco": 1408000.0, "estoque": 0, "id_categoria": 1}, {"id": 5, "descricao": "Galaxy Samsung S24", "preco": 158400.0, "estoque": 5, "id_categoria": 4}, {"id": 2, "descricao": "Roucautan", "preco": 1055.472, "estoque": 7, "id_categoria": 2}]

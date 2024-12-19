@@ -5,6 +5,7 @@ from templates.class_UIClientes import UI_Clientes
 from templates.class_UICategorias import UI_Categorias
 from templates.class_UIProdutos import UI_Produtos
 from templates.class_UICarrinho import UI_Carrinho
+from templates.class_UIPedidos import UI_Pedidos
 
 from controle import Controle
 
@@ -73,14 +74,14 @@ class Index:
     def Usuario_Tela():
         Controle.Adicionar_Venda(True, 0, st.session_state["clienteId"])
         op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Adicionar / Remover Produto no Carrinho", "Fechar Pedido", "Ver Meus Pedidos"])
-        # if op == "Listar Produtos":
-        #     ListarProdutosUI.main()
+        if op == "Listar Produtos":
+            UI_Carrinho.Listar_Carrinho()
         if op == "Adicionar / Remover Produto no Carrinho":
             UI_Carrinho.main()
-        # if op == "Fechar Pedido":
-        #     FecharPedidoUI.main()
-        # if op == "Ver Meus Pedidos":
-        #     VisualizarMeusPedidosUI.main()
+        if op == "Fechar Pedido":
+            UI_Pedidos.fecharPedido()
+        if op == "Ver Meus Pedidos":
+            UI_Pedidos.visualizar_Pedidos()
 
     # def sairDoSistema():
     #     if st.sidebar.button("Sair"):
