@@ -47,11 +47,14 @@ class UI_Categorias:
         descricao = st.text_input("Infome o descricao: ")
     
         if st.button("Inserir Categoria"):
-            #  Categoria_Validation(cls,descricao,teletelefone,email,senha
-            Controle.Categoria_Validation_Description(descricao)
-            st.success("Categoria criada com sucesso!")
-            time.sleep(2)
-            st.rerun()
+        
+            if not descricao:
+                st.error("Complete o campo de descrição! ")
+            else:
+                Controle.Categoria_Validation_Description(descricao)
+                st.success("Categoria atualizado com sucesso!")
+                time.sleep()
+                st.rerun()
     
     def Atualizar():
         st.header("Atualizar Categoria!")
@@ -62,10 +65,13 @@ class UI_Categorias:
             op = st.selectbox("Selecione o Categoria", Categorias)
             descricao = st.text_input("Informe o descricao: ", op.descricao)
             if st.button("Atualizar"):
-                Controle.Categoria_Atualizar(op.id, descricao)
-                st.success("Categoria atualizado com sucesso!")
-                time.sleep(2)
-                st.rerun()
+                if not descricao:
+                    st.error("Complete o campo de descrição! ")
+                else:
+                    Controle.Categoria_Atualizar(op.id, descricao)
+                    st.success("Categoria atualizado com sucesso!")
+                    time.sleep(2)
+                    st.rerun()
     def Excluir():
         st.header("Remover Categoria!")
         Categorias = Controle.Categoria_Listar()

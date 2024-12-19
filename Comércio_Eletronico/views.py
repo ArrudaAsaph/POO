@@ -2,6 +2,7 @@ from models.class_Categoria import Categoria, Categorias
 from models.class_Cliente import Cliente, Clientes
 from models.class_Produto import Produto, Produtos
 from models.class_Vendas import Venda, Vendas
+from models.class_VendaItens import VendaItem, VendaItens
 class Views:
     @staticmethod
     def adicionar_Cliente(nome,telefone,email,senha):
@@ -78,7 +79,7 @@ class Views:
 # AUTENTIFCAR CLIENTE
 
     @staticmethod
-    def Autentificar_Cliente(email,senha):
+    def autentificar_Cliente(email,senha):
         for c in Views.listar_Clientes():
             if (email == "admin@gmail.com"):
                 if (c.email == email and c.senha == senha):
@@ -95,36 +96,89 @@ class Views:
     @staticmethod
     def reajuste_Todos(porcentagem):
         for c in Views.listar_Produto():
-            Views.atualizar_Produto(c.id,c.descricao,(c.preco * (1 + porcentagem)),c.estoque,c.id_Categoria)
+            Views.atualizar_Produto(c.id,c.descricao,(c.preco * (1 + porcentagem)),c.estoque,c.id_categoria)
     
     @staticmethod
-    def reajuste_Todos(id,porcentagem):
+    def reajuste_Unico(id,porcentagem):
         c = Produtos.listar_Id(id)
-        for c in Views.listar_Produto():
-            Views.atualizar_Produto(c.id,c.descricao,(c.preco * (1 + porcentagem)),c.estoque,c.id_Categoria)
-    
+        
+        Views.atualizar_Produto(c.id,c.descricao,(c.preco * (1 + porcentagem)),c.estoque,c.id_categoria)
+#=====================================================================================
+# VENDA 
     @staticmethod
-    def inserir_Venda(carrinho,valor,id_Cliente):
+    def inserir_Venda(carrinho, total, id_cliente):
         ativo = False
-        for venda in Vendas.lista_Vend():
-            # self, id, data, carrinho, total, id_Cliente
-            if venda.id_Cliente == id_Cliente and venda.carrinho == True:
+        for venda in Vendas.listar_Vend():
+            if venda.id_Cliente == id_cliente and venda.carrinho == True:
                 ativo = True
                 break
-            if (ativo == False):
-                nova_Venda = Venda(0,None,carrinho,valor,id_Cliente)
-                Vendas.inseri_Vend(nova_Venda)
-    
+        if ativo == False:
+            nova_venda = Venda(0, None, carrinho, total, id_cliente)
+            Vendas.inserir_Vend(nova_venda)
+
     @staticmethod
-    def Fechar_Venda(id_Cliente):
+    def fechar_Venda(id_cliente):
         id_venda = 0
-        for venda in Vendas.lista_Vend():
-            if venda.id_Cliente == id_Cliente and venda.carrinho == True:
+        for venda in Vendas.listar_Vend():
+            # id, data, carrinho, total, id_Cliente
+
+            if venda.id_Cliente == id_cliente and venda.getCarrinho == True:
                 id_venda = venda.id
                 id = venda.id
                 carrinho = False
                 total = venda.total
                 id_cliente = venda.id_Cliente
                 data = venda.data
-                v = Venda(id,data,carrinho,total,id_Cliente)
-                Vendas.atualiza_Vend(v)
+                venda_atualizada = Venda(id, data, carrinho, total, id_cliente)
+                Vendas.atualizar_Vend(venda_atualizada)
+                break
+        
+        for vendaitem in VendaItens.listar_VendaIt():
+            # id, nome, qtd, preco, id_venda, id_produto
+            id_produto = 0
+            if vendaitem.id_venda == id_venda:
+                id_produto = vendaitem.id_produto
+
+            for produto in Produtos.listar_Prod():
+                if produto.id == id_produto:
+                    estoque = produto.estoque
+                    estoque = estoque + vendaitem.qtd
+                    Views.atualizar_Produto(produto.id,  produto.descricao, produto.preco, estoque, produto.id_categoria)
+                    break
+
+    @staticmethod
+    def listar_Venda():
+        return Vendas.listar_Vend()
+    
+    @staticmethod
+    def atualizar_Venda(id, data, carrinho, total, id_cliente):
+        venda_atualizada = Venda(id, data, carrinho, total, id_cliente)
+        Vendas.atualiza_Vend(venda_atualizada)
+
+
+
+#=====================================================================================
+# VENDA ITEM
+    @staticmethod
+    def adicionar_VendaItem(nome, quantidade, preco, id_venda, id_produto):
+        nova_VendaItem = VendaItem(0, nome, quantidade, preco, id_venda, id_produto)
+        VendaItens.inserir_VendaIt(nova_VendaItem)
+
+    @staticmethod
+    def listar_VendaItem():
+        return VendaItens.listar_VendaIt() 
+    
+    @staticmethod
+    def atualizar_VendaItem(id, nome, quantidade, preco, id_venda, id_produto):
+    #    id, nome, qtd, preco, id_venda, id_produto
+        venda_atualizada = VendaItem(id, nome, quantidade, preco, id_venda, id_produto)
+        VendaItens.atualizar_VendaIt(venda_atualizada)
+
+    @staticmethod
+    def excluir_VendaItem(id):
+        v = VendaItem(id, "", 0, 0, None, None)
+    #    id, nome, qtd, preco, id_venda, id_produto
+
+        VendaItens.excluir_VendaIt(v)
+    
+

@@ -51,51 +51,51 @@ class Vendas:
     lista_Vendas = []
 
     @classmethod
-    def inseri_Vend(cls,obj):
-        cls.abri_Vend()
+    def inserir_Vend(cls,obj):
+        cls.abrir_Vend()
 
         id = 0
         for x in cls.lista_Vendas:
             if x.id > id: id = x.id
         obj.id = id + 1
         cls.lista_Vendas.append(obj)
-        cls.salva_Vend()
+        cls.salvar_Vend()
     
     @classmethod
-    def lista_Vend(cls):
-        cls.abri_Vend()
+    def listar_Vend(cls):
+        cls.abrir_Vend()
         return cls.lista_Vendas
     
     @classmethod
     def listar_Id(cls,id):
-        cls.abri_Vend()
+        cls.abrir_Vend()
         for x in cls.lista_Vendas:
             if x.id == id: return x
         return None
     
     @classmethod
-    def atualiza_Vend(cls,obj):
+    def atualizar_Vend(cls,obj):
         x = cls.listar_Id(obj.id)   
         if (x != None):
             cls.lista_Vendas.remove(x)
             cls.lista_Vendas.append(obj)
-            cls.salva_Vend()
+            cls.salvar_Vend()
 
     @classmethod
-    def exclui_Vend(cls,obj):
+    def excluir_Vend(cls,obj):
         x = cls.listar_Id(obj.id)
         if (x != None):
             cls.lista_Vendas.remove(x)
-            cls.salva_Vend()
+            cls.salvar_Vend()
         
     
     @classmethod
-    def salva_Vend(cls):
+    def salvar_Vend(cls):
         with open("Vendas.json", mode="w") as arquivo:
             json.dump(cls.lista_Vendas,arquivo, default=vars)
 
     @classmethod
-    def abri_Vend(cls):
+    def abrir_Vend(cls):
         cls.lista_Vendas = []
 
         try:
@@ -108,3 +108,4 @@ class Vendas:
                 
         except FileNotFoundError:
             pass
+        

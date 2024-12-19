@@ -65,8 +65,15 @@ class Controle:
     
     @staticmethod
     def Categoria_Validation_Description(description):
-        description = description.capitalize()
-        return Views.adicionar_Categoria(description)
+        if len(description) > 3:
+            description = description.capitalize()
+            descricoes = Controle.Categoria_Listar()
+            for descri in descricoes:
+                if descri.descricao == description:
+                    return
+            return Views.adicionar_Categoria(description)
+        else:
+            return None
 
     @staticmethod
     def Categoria_Listar():
@@ -122,4 +129,43 @@ class Controle:
     def Autentification(email,senha):
         return Views.Autentificar_Cliente(email,senha)
     
+    @staticmethod
+    def Reajustar_Produto_Unico(id,porcentagem):
+        return Views.reajuste_Unico(id,porcentagem)
+
+    @staticmethod
+    def Rejustar_Todos(porcentagem):
+        return Views.reajuste_Todos(porcentagem)
     
+    @staticmethod
+    def Adicionar_Venda(carrinho, total, id_cliente):
+        return Views.inserir_Venda(carrinho, total, id_cliente)
+    
+    @staticmethod
+    def Fechar_Venda(id_cliente):
+        return Views.fechar_Venda(id_cliente)
+
+    @staticmethod
+    def Listar_Venda():
+        return Views.listar_Venda()
+
+    @staticmethod
+    def Atualizar_Venda(id, data, carrinho, total, id_cliente):
+        return Views.atualizar_Venda(id, data, carrinho, total, id_cliente)
+    
+    @staticmethod
+    def Adicionar_VendaItem(nome, quantidade, preco, id_venda, id_produto):
+        return Views.adicionar_VendaItem(nome, quantidade, preco, id_venda, id_produto)
+
+    @staticmethod
+    def Listar_VendaItem():
+        return Views.listar_VendaItem()
+
+    @staticmethod
+    def Atualizar_VendaItem(id,nome, quantidade, preco, id_venda, id_produto):
+        return Views.atualizar_VendaItem(id,nome, quantidade, preco, id_venda, id_produto)
+    
+    @staticmethod
+    def Excluir(id):
+        return Views.excluir_VendaItem(id)
+
